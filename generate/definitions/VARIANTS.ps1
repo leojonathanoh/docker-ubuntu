@@ -1,7 +1,9 @@
 $local:VARIANTS_DISTRO_VERSIONS = @(
+    '24.04'
     '22.04'
     '20.04'
     '18.04'
+    '16.04'
 )
 # Docker image variants' definitions
 $local:VARIANTS_MATRIX = @(

@@ -1,5 +1,4 @@
-@"
-FROM $( $VARIANT['_metadata']['distro'] ):$( $VARIANT['_metadata']['distro_version'] )
+FROM ubuntu:20.04
 
 RUN set -eux; \
     apt-get update; \
@@ -11,52 +10,21 @@ RUN set -eux; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*;
 
-
-"@
-
-$VARIANT['_metadata']['components'] | % {
-    $component = $_
-
-    switch( $component ) {
-
-        { $_ -in 'bats', 'ci' } {
-        @"
 RUN set -eux; \
     apt-get update; \
     apt-get install --no-install-recommends -y bats; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*;
 
-
-"@
-        }
-
-        { $_ -in 'curl', 'ci' } {
-        @"
 RUN set -eux; \
     apt-get update; \
     apt-get install --no-install-recommends -y curl; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*;
 
-
-"@
-        }
-
-        { $_ -in 'jq', 'ci' } {
-        @"
 RUN set -eux; \
     apt-get update; \
     apt-get install --no-install-recommends -y jq; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*;
 
-
-"@
-        }
-
-        default {
-            throw "No such component: $component"
-        }
-    }
-}
