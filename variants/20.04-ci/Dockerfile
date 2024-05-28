@@ -24,6 +24,12 @@ RUN set -eux; \
 
 RUN set -eux; \
     apt-get update; \
+    apt-get install --no-install-recommends -y git; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/*;
+
+RUN set -eux; \
+    apt-get update; \
     apt-get install --no-install-recommends -y jq; \
     apt-get clean; \
     rm -rf /var/lib/apt/lists/*;

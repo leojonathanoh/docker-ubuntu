@@ -43,6 +43,18 @@ RUN set -eux; \
 "@
         }
 
+        { $_ -in 'git', 'ci' } {
+        @"
+RUN set -eux; \
+    apt-get update; \
+    apt-get install --no-install-recommends -y git; \
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/*;
+
+
+"@
+        }
+
         { $_ -in 'jq', 'ci' } {
         @"
 RUN set -eux; \
